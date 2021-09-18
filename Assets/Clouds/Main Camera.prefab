@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4234299473833022489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4234299473833022484}
+  - component: {fileID: 4234299473833022491}
+  - component: {fileID: 4234299473833022490}
+  - component: {fileID: 4234299473833022485}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4234299473833022484
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234299473833022489}
+  m_LocalRotation: {x: -0.14798193, y: 0, z: 0, w: 0.98899007}
+  m_LocalPosition: {x: 0, y: -17.91, z: -70.54}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -17.02, y: 0, z: 0}
+--- !u!20 &4234299473833022491
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234299473833022489}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_projectionMatrixMode: 1
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_GateFitMode: 2
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 26.991467
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!81 &4234299473833022490
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234299473833022489}
+  m_Enabled: 1
+--- !u!114 &4234299473833022485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234299473833022489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee730f39f32f7794da65343191a08c5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shader: {fileID: 4800000, guid: 70f2ce311f763a54b80d793f8b780964, type: 3}
+  container: {fileID: 0}
+  CloudBase: {fileID: 11700000, guid: f674b853d48190f49b394b60a03de898, type: 2}
+  CloudDetail: {fileID: 11700000, guid: c4902f385a7517740b6672fbdad8a239, type: 2}
+  DensityThresold: -0.15
+  DensityMul: 5
+  CloudSteps: 50
+  CloudFade: 3
+  TimeScale: 0.25
+  BaseScale: 0.002
+  BaseOffset: 0
+  BaseSpeed: 1
+  BaseWeights: {x: 0.89, y: 0.19, z: -0.76}
+  DetailNoiseScale: 0.05
+  DetailOffset: 0
+  DetailSpeed: 0.5
+  DetailWeights: {x: 0.5, y: 0.94, z: 0.5}
+  LightSteps: 6
+  LightAbsorptionTowardSun: 0.575
+  DarknessThresold: 0.507
+  PhaseValue: 0.542
