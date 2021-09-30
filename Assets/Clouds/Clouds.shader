@@ -119,14 +119,14 @@
 				float heightGradient = saturate(remap(heightPercent, 0.0, gMin, 0, 1)) * saturate(remap(heightPercent, 1, gMax, 0, 1));
 				heightGradient *= edgeWeight;
 
-				float3 uvw = rayPos  * _BaseScale  + _BaseOffset  + float3(time,time * 0.1,time * 0.2) * _BaseSpeed;
+				float3 uvw = rayPos  * _BaseScale * baseScale + _BaseOffset  + float3(time,time * 0.1,time * 0.2) * _BaseSpeed;
 				float4 baseNoise = _CloudBase.SampleLevel(sampler_CloudBase,uvw,0);
 				float3 baseWeights = normalize(_BaseWeights);
 				float baseFBM = dot(baseWeights, baseNoise) * heightGradient;
 				float baseShapeDensity = baseFBM + _DensityThresold;
 				if (baseShapeDensity > 0)
 				{
-					float3 detail_uvw = rayPos * _DetailNoiseScale + _DetailOffset * offsetSpeed + float3(time * 0.4, -time,time * 0.1) *_DetailSpeed ;
+					float3 detail_uvw = rayPos * _DetailNoiseScale * baseScale + _DetailOffset * offsetSpeed + float3(time * 0.4, -time,time * 0.1) *_DetailSpeed ;
 					float4 detailNoise = _CloudDetail.SampleLevel(sampler_CloudDetail, detail_uvw, 0);
 					float detailWeights = normalize(_DetailWeights);
 					// 分型布朗运动
@@ -194,7 +194,7 @@
 
 				float3 cloudCol = lightEnergy * _LightColor0.rgb;
 				float3 final =  col.rgb * transmittance  + cloudCol ;
-				final = lerp(final, col.rgb, horizon);
+				//final = lerp(final, col.rgb, horizon);
 				return float4(final, 0);
 
             }

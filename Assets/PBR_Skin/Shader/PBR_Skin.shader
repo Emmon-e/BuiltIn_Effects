@@ -3,6 +3,8 @@
 	Properties
 	{
 		_MainTex("Texture", 2D) = "white" {}
+		_BaseColor("BaseColor",Color) = (1,1,1,1)
+
 		_BaseNormal("BaseNormal",2D) = "white" {}
 		_BaseNormalIntensity("BaseNormalIntensity",Range(0,1)) = 0.5
 
@@ -18,10 +20,12 @@
 		_Smoothness("Smoothness",Range(0,2)) = 0.3
 
 		_ThicknessMap("ThicknessMap",2D) = "white" {}
-		_Thickness("Thickness", Range(0, 1)) = 0.5
+		_Thickness("Thickness", Range(0, 10)) = 0.5
+		_TransmissionWrap("TransmissionWrap", Range(0, 1)) = 0.5
+		_TransmissionColor("TransmissionColor",Color) = (0.5,0.1,0.1,1)
 
 		_LUTMap("LUT Map", 2D) = "white" {}
-		_SSSIntensity("SSSIntensity",Range(0,3)) = 0.5
+		_LUTIntensity("LUTIntensity",Range(0,3)) = 0.5
 
 		_Metallic("Metallic", Range(0,1)) = 0.0
 		_Emission("Emission",Color) = (0,0,0,1)
@@ -36,7 +40,7 @@
 				Tags { "LightMode" = "ForwardBase"}
 
 				CGPROGRAM
-				#pragma enable_d3d11_debug_symbols
+				//#pragma enable_d3d11_debug_symbols
 				#pragma vertex vert
 				#pragma fragment frag
 				#pragma target 3.0
@@ -67,6 +71,7 @@
 
 				sampler2D _MainTex;
 				float4 _MainTex_ST;
+				half4 _BaseColor;
 				sampler2D _BaseNormal;
 				half _BaseNormalIntensity;
 				sampler2D _DetailNormal;
@@ -78,11 +83,13 @@
 				half _ConcaveInyensity;
 				sampler2D _ThicknessMap;
 				half _Thickness;
+				half _TransmissionWrap;
+				half4 _TransmissionColor;
 				sampler2D _LUTMap;
 				half _Metallic;
 				half _Smoothness;
 				half4 _Emission;
-				half _SSSIntensity;
+				half _LUTIntensity;
 			inline float3 BlendNormal(float3 N1, float3 N2)
 				{
 					float3 ret = normalize(float3(N1.xy + N2.xy, N1.z ));
@@ -141,9 +148,10 @@
 					float3 viewDir = normalize(UnityWorldSpaceViewDir(worldPos));// normalize(_WorldSpaceCameraPos.xyz - worldPos.xyz);
 					float3 lightDir = normalize(UnityWorldSpaceLightDir(worldPos));// normalize(_WorldSpaceLightPos0.xyz - worldPos.xyz);
 
-					// Thickness
-					half thickness = tex2D(_ThicknessMap, i.uv).r;
-
+					// transmission
+					half thickness = tex2D(_ThicknessMap, i.uv).r * _Thickness;
+					float wrapNoL = dot(worldNormal, -lightDir) *_TransmissionWrap +(1 - _TransmissionWrap);
+					half3 transCol = thickness * _TransmissionColor.rgb *wrapNoL;
 					//sss
 					float ddWorldNormal = length(fwidth(worldNormal));
 					float ddWorldPos = length(fwidth(worldPos));
@@ -153,12 +161,12 @@
 
 					SurfaceOutputStandard o;
 					UNITY_INITIALIZE_OUTPUT(SurfaceOutputStandard, o);
-					fixed4 Albedo = tex2D(_MainTex, i.uv);
+					fixed4 Albedo = tex2D(_MainTex, i.uv) * _BaseColor;
 					float roughness = tex2D(_RoughnessMap, i.uv).r;
 					float AO = tex2D(_ConcaveMap,i.uv).r;
 					AO = lerp(1, AO, _ConcaveInyensity);
 
-					o.Albedo = lerp(Albedo, Albedo.rgb * sssColor, _SSSIntensity);
+					o.Albedo = lerp(Albedo, Albedo.rgb * sssColor + transCol, _LUTIntensity);
 					o.Emission = _Emission.rgb;
 					o.Normal = worldNormal;
 					o.Metallic = _Metallic;

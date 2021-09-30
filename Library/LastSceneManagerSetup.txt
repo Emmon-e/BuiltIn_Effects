@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/PBR_Skin/PBR_Skin.unity
+- path: Assets/Clouds/clouds.unity
   isLoaded: 1
   isActive: 1

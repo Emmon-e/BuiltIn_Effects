@@ -345,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 162790, guid: 97978387d041db2429e6dabd7b1c4f8f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400386, guid: 97978387d041db2429e6dabd7b1c4f8f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -639,7 +639,7 @@ Transform:
   m_GameObject: {fileID: 1495832318}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -90.62, y: -10.1, z: 6.69}
-  m_LocalScale: {x: 5000, y: 15, z: 5000}
+  m_LocalScale: {x: 200, y: 20, z: 200}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -863,22 +863,22 @@ PrefabInstance:
     - target: {fileID: 4234299473833022485, guid: 359f926ac3432904f9b3a2fe1cdec3df,
         type: 3}
       propertyPath: DensityMul
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4234299473833022485, guid: 359f926ac3432904f9b3a2fe1cdec3df,
         type: 3}
       propertyPath: LightAbsorptionTowardSun
-      value: 0.579
+      value: 0.815
       objectReference: {fileID: 0}
     - target: {fileID: 4234299473833022485, guid: 359f926ac3432904f9b3a2fe1cdec3df,
         type: 3}
       propertyPath: DarknessThresold
-      value: 0.708
+      value: 0.113
       objectReference: {fileID: 0}
     - target: {fileID: 4234299473833022485, guid: 359f926ac3432904f9b3a2fe1cdec3df,
         type: 3}
       propertyPath: PhaseValue
-      value: 0.316
+      value: 0.458
       objectReference: {fileID: 0}
     - target: {fileID: 4234299473833022485, guid: 359f926ac3432904f9b3a2fe1cdec3df,
         type: 3}
@@ -903,7 +903,17 @@ PrefabInstance:
     - target: {fileID: 4234299473833022485, guid: 359f926ac3432904f9b3a2fe1cdec3df,
         type: 3}
       propertyPath: DetailNoiseScale
-      value: 0.05
+      value: 22.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234299473833022485, guid: 359f926ac3432904f9b3a2fe1cdec3df,
+        type: 3}
+      propertyPath: BaseScale
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4234299473833022485, guid: 359f926ac3432904f9b3a2fe1cdec3df,
+        type: 3}
+      propertyPath: DensityThresold
+      value: -0.15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 359f926ac3432904f9b3a2fe1cdec3df, type: 3}
