@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Clouds/clouds.unity
+- path: Assets/Toon_Cloud/toon_sky.unity
   isLoaded: 1
   isActive: 1
